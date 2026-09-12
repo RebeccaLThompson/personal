@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rebecca Thompson — Communications, Capitol Hill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #10233F;
+    --navy-deep: #0A1830;
+    --sky: #4F86C6;
+    --gold: #B98A2E;
+    --paper: #F6F3EC;
+    --paper-dim: #ECE7DA;
+    --ink: #1D1D1B;
+    --ink-soft: #4A4A46;
+    --line: rgba(16,35,63,0.14);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+    position:relative;
+  }
+  .nav-mark{
+    font-family:var(--serif);font-weight:600;font-size:1.05rem;
+    letter-spacing:0.01em;color:var(--navy);
+    text-decoration:none;
+  }
+  .nav-links{display:flex;gap:28px;font-size:0.92rem;}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);transition:color .2s;padding:4px 0;}
+  .nav-links a:hover{color:var(--navy);}
+
+  .nav-toggle{
+    display:none;
+    background:none;border:none;padding:10px;margin:-10px;
+    cursor:pointer;
+    flex-direction:column;justify-content:center;gap:5px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .nav-toggle span{
+    width:22px;height:2px;background:var(--navy);display:block;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  @media (max-width:700px){
+    .nav-toggle{display:flex;}
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:64px;left:0;right:0;
+      flex-direction:column;
+      gap:2px;
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      padding:8px 22px 18px;
+      box-shadow:0 16px 24px -18px rgba(16,35,63,0.3);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:12px 0;font-size:1rem;border-bottom:1px solid var(--line);}
+    .nav-links a:last-child{border-bottom:none;}
+  }
+
+  /* anchor targets clear the sticky nav */
+  section, header.hero{scroll-margin-top:64px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:var(--navy);
+    color:var(--paper);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    align-items:stretch;
+    min-height:640px;
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;min-height:auto;}
+  }
+
+  .hero-copy{
+    padding:104px 56px 72px 40px;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;z-index:2;
+  }
+  @media (max-width:900px){
+    .hero-copy{padding:40px 24px 44px;}
+  }
+  @media (max-width:640px){
+    .hero-copy{padding:32px 20px 40px;}
+  }
+
+  .kicker{
+    font-size:0.86rem;color:var(--sky);
+    letter-spacing:0.02em;
+    margin:0 0 22px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;flex-shrink:0;}
+
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    margin:0 0 22px;
+    color:#fff;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;color:var(--sky);
+  }
+
+  .hero p.lede{
+    font-size:1.12rem;
+    color:#D9DEE8;
+    max-width:46ch;
+    margin:0 0 34px;
+  }
+
+  .hero-facts{
+    display:flex;flex-wrap:wrap;gap:10px 14px;
+    margin-bottom:38px;
+  }
+  .fact{
+    border:1px solid rgba(255,255,255,0.22);
+    border-radius:100px;
+    padding:7px 16px;
+    font-size:0.84rem;
+    color:#D9DEE8;
+  }
+
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;
+    border-radius:4px;
+    font-size:0.94rem;
+    font-weight:500;
+    text-decoration:none;
+    transition:transform .18s ease, background .18s ease;
+  }
+  .btn-primary{background:var(--sky);color:#0A1830;}
+  .btn-primary:hover{background:#6FA0D6;transform:translateY(-1px);}
+  .btn-ghost{border:1px solid rgba(255,255,255,0.35);color:#fff;}
+  .btn-ghost:hover{border-color:#fff;transform:translateY(-1px);}
+
+  .hero-photo-col{
+    position:relative;
+    min-height:340px;
+  }
+  @media (max-width:900px){
+    .hero-photo-col{min-height:300px;order:-1;}
+  }
+  @media (max-width:480px){
+    .hero-photo-col{min-height:280px;}
+  }
+  .hero-photo-col img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center 20%;
+    display:block;
+  }
+  .hero-photo-col::after{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(100deg, var(--navy) 0%, rgba(16,35,63,0) 26%);
+  }
+  @media (max-width:900px){
+    .hero-photo-col::after{background:linear-gradient(0deg, var(--navy) 0%, rgba(16,35,63,0) 30%);}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:88px 0;}
+  @media (max-width:640px){ section{padding:58px 0;} }
+
+  .section-banner{margin:-88px 0 56px;}
+  @media (max-width:640px){ .section-banner{margin:-58px 0 40px;} }
+  .section-banner img{
+    width:100%;display:block;
+    max-height:480px;object-fit:cover;
+    object-position:center 30%;
+  }
+  .section-banner figcaption{
+    text-align:center;font-size:0.85rem;color:var(--ink-soft);
+    padding:14px 22px 0;
+  }
+
+  .section-head{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:26px;
+  }
+  @media (max-width:760px){
+    .section-head{grid-template-columns:1fr;gap:10px;}
+  }
+  .section-label{
+    font-size:0.86rem;color:var(--gold);font-weight:600;
+    align-self:end;
+  }
+  .section-head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(1.6rem,3vw,2.1rem);
+    margin:0;color:var(--navy);
+    max-width:20ch;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;
+  }
+  @media (max-width:760px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{
+    font-size:1.06rem;color:var(--ink-soft);
+    max-width:64ch;margin:0 0 18px;
+  }
+  .about-grid p:last-child{margin-bottom:0;}
+
+  .about-flex{display:flex;gap:40px;align-items:flex-start;}
+  @media (max-width:700px){ .about-flex{flex-direction:column;} }
+  .about-photo{
+    width:300px;flex-shrink:0;
+    border-radius:4px;
+    object-fit:cover;
+    aspect-ratio:3/4;
+    box-shadow:0 18px 34px -18px rgba(16,35,63,0.35);
+  }
+  @media (max-width:700px){ .about-photo{width:210px;} }
+  .about-text{flex:1;min-width:0;}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;
+  }
+  @media (max-width:760px){ .timeline{grid-template-columns:1fr;} }
+  .exp-figure-img{
+    width:100%;max-width:300px;display:block;
+    border-radius:4px;
+    box-shadow:0 18px 34px -18px rgba(16,35,63,0.35);
+  }
+  @media (max-width:480px){ .exp-figure-img{max-width:230px;} }
+  .tl-list{border-left:1px solid var(--line);padding-left:32px;}
+  @media (max-width:480px){ .tl-list{padding-left:22px;} .tl-item::before{left:-27px !important;} }
+  .tl-item{position:relative;padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;left:-37px;top:6px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--gold);
+  }
+  .tl-when{font-size:0.84rem;color:var(--gold);font-weight:600;margin-bottom:6px;}
+  .tl-role{font-family:var(--serif);font-size:1.28rem;color:var(--navy);margin:0 0 6px;}
+  .tl-desc{color:var(--ink-soft);max-width:58ch;margin:0;}
+
+  /* ---------- HORIZON (NASA aspiration) ---------- */
+  .horizon{
+    background:var(--navy-deep);
+    color:var(--paper);
+  }
+  .horizon .section-label{color:var(--sky);}
+  .horizon .section-head h2{color:#fff;}
+  .horizon .section-head{border-bottom-color:rgba(255,255,255,0.14);}
+
+  .horizon-grid{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;
+  }
+  @media (max-width:760px){ .horizon-grid{grid-template-columns:1fr;} }
+  .horizon-photos{display:flex;flex-direction:column;gap:20px;}
+  @media (max-width:760px){ .horizon-photos{flex-direction:row;flex-wrap:wrap;} }
+  .horizon-photos figure{margin:0;}
+  .horizon-photos img{
+    width:100%;max-width:300px;
+    aspect-ratio:4/3;object-fit:cover;
+    border-radius:4px;display:block;
+    box-shadow:0 18px 34px -18px rgba(0,0,0,0.5);
+  }
+  @media (max-width:760px){ .horizon-photos img{max-width:210px;} }
+  .horizon-photos figcaption{
+    font-size:0.78rem;color:#AEB7C6;margin-top:8px;
+  }
+  .horizon-body p{
+    color:#C9D0DC;font-size:1.06rem;max-width:62ch;margin:0 0 26px;
+  }
+  .pillars{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    margin-top:8px;
+  }
+  @media (max-width:640px){ .pillars{grid-template-columns:1fr;} }
+  .pillar{
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:6px;
+    padding:22px 20px;
+  }
+  .pillar h3{
+    font-family:var(--serif);font-weight:500;font-size:1.08rem;
+    margin:0 0 8px;color:#fff;
+  }
+  .pillar p{color:#AEB7C6;font-size:0.94rem;margin:0;}
+
+  /* ---------- OREGON ---------- */
+  .oregon-grid{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;
+  }
+  @media (max-width:760px){ .oregon-grid{grid-template-columns:1fr;} }
+  .oregon-flex{display:flex;gap:40px;align-items:flex-start;flex-direction:row-reverse;}
+  @media (max-width:700px){ .oregon-flex{flex-direction:column;} }
+  .oregon-photo{
+    width:300px;flex-shrink:0;
+    border-radius:4px;
+    object-fit:cover;
+    aspect-ratio:3/4;
+    box-shadow:0 18px 34px -18px rgba(16,35,63,0.35);
+  }
+  @media (max-width:700px){ .oregon-photo{width:210px;} }
+  .oregon-body{flex:1;min-width:0;}
+  .oregon-body p{
+    font-size:1.06rem;color:var(--ink-soft);max-width:62ch;margin:0 0 18px;
+  }
+  .quote{
+    font-family:var(--serif);font-style:italic;
+    font-size:1.3rem;color:var(--navy);
+    border-left:3px solid var(--gold);
+    padding-left:22px;margin:28px 0 0;max-width:52ch;
+  }
+
+  /* ---------- CONNECT ---------- */
+  .connect{
+    background:var(--paper-dim);
+    border-top:1px solid var(--line);
+  }
+  .connect-grid{
+    display:grid;grid-template-columns:1.2fr 1fr;gap:40px;
+    align-items:center;
+  }
+  @media (max-width:760px){ .connect-grid{grid-template-columns:1fr;} }
+  .connect-flex{display:flex;gap:32px;align-items:center;}
+  @media (max-width:600px){ .connect-flex{flex-direction:column;align-items:flex-start;} }
+  .connect-photo{
+    width:260px;flex-shrink:0;
+    aspect-ratio:4/3;object-fit:cover;
+    border-radius:4px;
+    box-shadow:0 18px 34px -18px rgba(16,35,63,0.35);
+  }
+  @media (max-width:600px){ .connect-photo{width:200px;} }
+  .connect h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(1.7rem,3.4vw,2.3rem);
+    color:var(--navy);margin:0 0 14px;max-width:16ch;
+  }
+  .connect p{color:var(--ink-soft);font-size:1.05rem;max-width:46ch;margin:0;}
+  .connect-links{display:flex;flex-direction:column;gap:14px;}
+  .clink{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:16px 20px;
+    text-decoration:none;
+    color:var(--navy);
+    font-weight:500;
+    transition:border-color .2s, transform .2s;
+  }
+  .clink:hover{border-color:var(--sky);transform:translateX(3px);}
+  .clink span.arrow{color:var(--gold);}
+
+  footer{
+    padding:34px 0;
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .zoomable{cursor:zoom-in;}
+  .lightbox{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(10,17,30,0.92);
+    display:none;
+    align-items:center;justify-content:center;
+    padding:40px;
+    cursor:zoom-out;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:min(92vw, 1100px);
+    max-height:88vh;
+    width:auto;height:auto;
+    object-fit:contain;
+    border-radius:4px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .lightbox-close{
+    position:absolute;top:22px;right:26px;
+    width:44px;height:44px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.06);
+    color:#fff;
+    font-size:1.4rem;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,0.16);}
+  @media (max-width:640px){
+    .lightbox{padding:16px;}
+    .lightbox-close{top:14px;right:14px;width:40px;height:40px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-mark" href="#top">R. Thompson</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#hill">On the Hill</a>
+      <a href="#horizon">Next Horizon</a>
+      <a href="#oregon">Oregon</a>
+      <a href="#connect">Connect</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="kicker"><span class="dot"></span>Washington, D.C. &nbsp;·&nbsp; Communications Director, U.S. House of Representatives</p>
+      <h1>Rebecca Thompson writes the story <em>before</em> it breaks.</h1>
+      <p class="lede">Communications Director for a Member of Congress, a national security fellow on the side, raised in Oregon, aimed at NASA — and always the first to say hello.</p>
+      <div class="hero-facts">
+        <span class="fact">Oregon State University</span>
+        <span class="fact">Communications Director, OH-02</span>
+        <span class="fact">Eyes on NASA</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#connect">Get in touch</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/rebecca-thompson-a188a117b/" target="_blank" rel="noopener">View LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-photo-col">
+      <img class="zoomable" src="images/headshot.jpg" alt="Professional headshot of Rebecca Thompson smiling, with the U.S. Capitol dome in the background">
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="section-label">About</div>
+    <div class="about-flex">
+      <img class="about-photo zoomable" src="images/about.jpg" alt="Rebecca Thompson outdoors in a park, smiling">
+      <div class="about-text">
+        <p>Rebecca is Communications Director for Congressman Dave Taylor (OH-02) — the office's formal spokesperson and media liaison, responsible for message strategy, rapid response, and the constituent-facing work that turns legislation into something people actually understand. Before that, she cut her teeth on nearly every side of a Hill comms shop: digital strategy, speechwriting, press logistics, and leadership-office scheduling.</p>
+        <p>She grew up in Oregon before heading east, and she's carried a Pacific Northwest directness into a city that often rewards the opposite. She's the person who remembers your name, your dog's name, and the thing you mentioned in passing three conversations ago.</p>
+        <div class="hero-facts" style="margin-top:24px;">
+          <span class="fact" style="border-color:var(--line);color:var(--ink-soft);">Media Relations</span>
+          <span class="fact" style="border-color:var(--line);color:var(--ink-soft);">Crisis Communications</span>
+          <span class="fact" style="border-color:var(--line);color:var(--ink-soft);">Speechwriting</span>
+          <span class="fact" style="border-color:var(--line);color:var(--ink-soft);">Rapid Response</span>
+          <span class="fact" style="border-color:var(--line);color:var(--ink-soft);">Graphic Design</span>
+          <span class="fact" style="border-color:var(--line);color:var(--ink-soft);">Spanish</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hill" style="background:var(--paper-dim);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <figure class="section-banner">
+    <img class="zoomable" src="images/roundtable.jpg" alt="Rebecca Thompson's office at a congressional roundtable with sheriffs, Members of Congress, and press">
+    <figcaption>A congressional roundtable on public safety</figcaption>
+  </figure>
+  <div class="wrap timeline">
+    <div class="section-label">
+      Experience
+      <figure style="margin:20px 0 0;">
+        <img class="exp-figure-img zoomable" src="images/podium.jpg" alt="Rebecca Thompson at the podium in the White House press briefing room">
+        <figcaption style="font-size:0.78rem;color:var(--ink-soft);margin-top:8px;font-weight:400;">White House press briefing room</figcaption>
+      </figure>
+    </div>
+    <div class="tl-list">
+      <div class="tl-item">
+        <div class="tl-when">Jan 2026 – Present</div>
+        <div class="tl-role">National Security Policy Fellow</div>
+        <p class="tl-desc">Institute for American Leadership. One of 30 fellows selected for a 10-month program on the role of soft power in U.S. foreign policy — seminars and working sessions with senior defense officials and diplomats, and a capstone project analyzing foreign assistance as a tool in great power competition.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jan 2025 – Present</div>
+        <div class="tl-role">Communications Director — Congressman Dave Taylor (OH-02)</div>
+        <p class="tl-desc">Formal spokesperson and media liaison for the Congressman. Builds media, rapid-response, and public relations strategy; tracks legislative and national issues that may put him in the spotlight; oversees newsletters and constituent-engagement campaigns.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Mar 2026 – May 2026</div>
+        <div class="tl-role">Foreign Policy Fellow — Wilson Center</div>
+        <p class="tl-desc">Worked alongside senior foreign policy and national security practitioners on key global issues; built a sample appropriations budget in a reconciliation simulation, collaborating across the aisle on bipartisan policy solutions.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Feb 2024 – Dec 2024</div>
+        <div class="tl-role">Director of Digital Communications — Congressman Max Miller (OH-07)</div>
+        <p class="tl-desc">Owned digital content across X, Facebook, Instagram, and YouTube — graphics, video, and data-driven strategy that grew the Congressman's reach. Wrote video scripts, talking points, and town hall materials.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jan 2023 – Feb 2024</div>
+        <div class="tl-role">Staff & Press Assistant — Congresswoman Julia Letlow (LA-05)</div>
+        <p class="tl-desc">Drafted speeches, radio talkers, newsletters, and targeted email/SMS campaigns. Wrote 50+ constituent commendation letters and briefed 200+ constituent tours on the Congresswoman's legislative work.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Aug 2022 – Dec 2022</div>
+        <div class="tl-role">Press Intern — House Republican Conference, Office of Chairwoman Elise Stefanik</div>
+        <p class="tl-desc">Logged press correspondence to help set up 500+ interviews and TV hits; maintained White House and congressional correspondent press lists; coordinated 50+ listening sessions for the Deputy Communications Director.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="horizon" class="horizon">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Next Horizon</div>
+      <h2>The next chapter is written from Greenbelt or Houston, not the Capitol.</h2>
+    </div>
+    <div class="horizon-grid">
+      <div class="horizon-photos">
+        <figure>
+          <img class="zoomable" src="images/nasa.jpg" alt="Rebecca Thompson beside the NASA insignia">
+          <figcaption>At NASA</figcaption>
+        </figure>
+        <figure>
+          <img class="zoomable" src="images/anduril.jpg" alt="Rebecca Thompson in front of an Anduril Industries aircraft">
+          <figcaption>Anduril Industries</figcaption>
+        </figure>
+      </div>
+      <div class="horizon-body">
+        <p>Rebecca is building toward a communications role at NASA — bringing the same instinct that makes a bill's fine print make sense to a constituent to bear on something bigger: making the case for what the agency is actually doing, and why it matters. Her national security fellowship work has only sharpened that pull toward the harder edge of technology and public mission — space included.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <h3>Translate complexity</h3>
+            <p>Policy and orbital mechanics have more in common than people think — both need a translator.</p>
+          </div>
+          <div class="pillar">
+            <h3>Build public trust</h3>
+            <p>Years of press strategy under real scrutiny, applied to an agency the public wants to believe in.</p>
+          </div>
+          <div class="pillar">
+            <h3>Show up in the room</h3>
+            <p>Relationship-first, always reachable — the kind of communicator people loop in early.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="oregon">
+  <div class="wrap oregon-grid">
+    <div class="section-label">Oregon</div>
+    <div class="oregon-flex">
+      <img class="oregon-photo zoomable" src="images/dcview.jpg" alt="Rebecca Thompson overlooking the National Mall from a Capitol balcony">
+      <div class="oregon-body">
+        <p>Before the Rayburn Building, there was Oregon State — a B.A. in English and a B.S. in Psychology, earned cum laude in 2021. She was a 2023 Oregon Cherry Blossom Delegate and served as Induction Officer for Psi Chi, the international psychology honor society, alongside coursework in advertising, PR, and technical writing.</p>
+        <p>It's the part of the résumé that doesn't show up in a job title, but shows up in everything else: how she works a room, how she treats staff, how she still measures a good day against an Oregon standard.</p>
+        <p class="quote">"Still an Oregonian who happens to work three time zones away."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="connect" class="connect">
+  <div class="wrap connect-grid">
+    <div class="connect-flex">
+      <img class="connect-photo zoomable" src="images/phones.jpg" alt="Rebecca Thompson answering a phone at a desk lined with rotary phones">
+      <div>
+        <h2>Let's actually talk.</h2>
+        <p>Rebecca is easiest to reach the old-fashioned way — say hello, and she'll remember it.</p>
+      </div>
+    </div>
+    <div class="connect-links">
+      <a class="clink" href="mailto:thompsonre6@gmail.com">thompsonre6@gmail.com <span class="arrow">↗</span></a>
+      <a class="clink" href="https://www.linkedin.com/in/rebecca-thompson-a188a117b/" target="_blank" rel="noopener">LinkedIn <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Rebecca Thompson · Washington, D.C.</div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var links = document.getElementById('navLinks');
+    function closeMenu(){
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+    toggle.addEventListener('click', function(){
+      var isOpen = links.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+  })();
+
+  (function(){
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var closeBtn = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt){
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    }
+
+    document.querySelectorAll('img.zoomable').forEach(function(img){
+      img.addEventListener('click', function(){
+        openLightbox(img.src, img.alt);
+      });
+    });
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e){
+      if(e.target === lightbox){ closeLightbox(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ closeLightbox(); }
+    });
+  })();
+</script>
+</body>
+</html>
